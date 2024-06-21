@@ -1,1 +1,39 @@
+class MoneroRPC {
+  constructor(url) {
+    // URL should be in the format: http://IP:PORT/json_rpc
+    // For example: http://127.0.0.1:18082/json_rpc
+    this.url = url;
+  }
 
+  async call(method, params = {}) {
+    // This method creates the JSON-RPC request
+    const response = await fetch(this.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // This body corresponds to the -d parameter in the curl example
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: '0',
+        method: method,  // This is the $METHOD in the curl example
+        params: params,  // This is the $PARAMS in the curl example
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+      throw new Error(data.error.message);
+    }
+
+    return data.result;
+  }
+
+  // Example method using the JSON-RPC interface
+  async makeIntegratedAddress(paymentId) {
+    return this.call('make_integrated_address', { payment_id: paymentId });
+  }
+}
+
+export default MoneroRPC;
