@@ -1,4 +1,4 @@
-class MoneroRPC {
+class MoneroWalletRPC {
   constructor(url) {
     // URL should be in the format: http://IP:PORT/json_rpc
     // For example: http://127.0.0.1:18082/json_rpc
@@ -34,6 +34,37 @@ class MoneroRPC {
   async makeIntegratedAddress(paymentId) {
     return this.call('make_integrated_address', { payment_id: paymentId });
   }
+
+  async setDaemon({
+    address = "",
+    trusted = false,
+    ssl_support = "autodetect",
+    ssl_private_key_path,
+    ssl_certificate_path,
+    ssl_ca_file,
+    ssl_allowed_fingerprints,
+    ssl_allow_any_cert = false,
+    username,
+    password
+  } = {}) {
+    const params = {
+      address,
+      trusted,
+      ssl_support,
+      ssl_private_key_path,
+      ssl_certificate_path,
+      ssl_ca_file,
+      ssl_allowed_fingerprints,
+      ssl_allow_any_cert,
+      username,
+      password
+    };
+
+    // Remove undefined parameters
+    Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
+
+    return this.call('set_daemon', params);
+  }
 }
 
-export default MoneroRPC;
+export default MoneroWalletRPC;
