@@ -16,34 +16,27 @@ Install it locally with ```npm install /path/to/monero-rpc.```
 ## Usage
 
 ```javascript
-import MoneroRPC from 'monero-rpc';
+// Create an instance of MoneroWalletRPC
+const wallet = new MoneroWalletRPC('http://127.0.0.1:18082/json_rpc');
 
-const rpc = new MoneroRPC('http://127.0.0.1:18082/json_rpc');
-const balance = await rpc.getBalance();
+// Set up the daemon connection
+await wallet.setDaemon({
+  address: "http://localhost:18081",
+  trusted: true
+});
+
+// Get balance for account index 0 and address indices 0 and 1
+const balance = await wallet.getBalance({
+  account_index: 0,
+  address_indices: [0, 1]
+});
+
 console.log(balance);
-```
-```javascript
-import MoneroRPC from 'monero-rpc';
 
-const rpc = new MoneroRPC('http://127.0.0.1:18082/json_rpc');
+// Get balance for all accounts
+const allBalances = await wallet.getBalance({
+  all_accounts: true
+});
 
-async function main() {
-  try {
-    const balance = await rpc.getBalance();
-    console.log('Balance:', balance);
-
-    const address = await rpc.getAddress();
-    console.log('Address:', address);
-
-    // Make a transfer
-    const result = await rpc.transfer([
-      {address: 'recipient_address', amount: 100000000000}  // 0.1 XMR
-    ], 100000000000);
-    console.log('Transfer result:', result);
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
-
-main();
+console.log(allBalances);
 ```
