@@ -16,6 +16,10 @@ Install it locally with ```npm install /path/to/monero-rpc.```
 ## Usage
 
 ```javascript
+
+//Imports
+import MoneroWalletRPC from 'monero-rpc';
+
 // Create an instance of MoneroWalletRPC
 const wallet = new MoneroWalletRPC('http://127.0.0.1:18082/json_rpc');
 
