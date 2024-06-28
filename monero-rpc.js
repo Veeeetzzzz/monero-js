@@ -34,7 +34,8 @@ class MoneroWalletRPC {
   async makeIntegratedAddress(paymentId) {
     return this.call('make_integrated_address', { payment_id: paymentId });
   }
-//JSON RPC method is set_daemon
+
+  //JSON RPC method is set_daemon
   async setDaemon({
     address = "",
     trusted = false,
@@ -59,8 +60,15 @@ class MoneroWalletRPC {
       username,
       password
     };
-//JSON RPC method is get_balance
-   async getBalance({
+
+    // Remove undefined parameters
+    Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
+
+    return this.call('set_daemon', params);
+  }
+
+  //JSON RPC method is get_balance
+  async getBalance({
     account_index,
     address_indices,
     all_accounts = false,
@@ -76,7 +84,7 @@ class MoneroWalletRPC {
     // Remove undefined parameters
     Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
 
-    return this.call('set_daemon', params);
+    return this.call('get_balance', params);
   }
 }
 
