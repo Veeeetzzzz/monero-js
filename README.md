@@ -44,4 +44,5 @@ const allBalances = await wallet.getBalance({
 
 console.log(allBalances);
 ```
+## Contributing
 ## Terms
