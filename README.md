@@ -15,6 +15,32 @@ Install it locally with ```npm install /path/to/monero-rpc.```
 
 ## Usage
 
+After running the npm command in your directory you can call the JavaScript in any JS framework
+
+## index.html
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monero Wallet RPC Tester</title>
+</head>
+<body>
+    <h1>Monero Wallet RPC Tester</h1>
+    <button id="testMakeIntegratedAddress">Test Make Integrated Address</button>
+    <button id="testSetDaemon">Test Set Daemon</button>
+    <button id="testGetBalance">Test Get Balance</button>
+    <h2>Result:</h2>
+    <pre id="result"></pre>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
+
+```
+
 ```javascript
 
 //Imports
