@@ -15,9 +15,9 @@ Install it locally with ```npm install /path/to/monero-rpc.```
 
 ## Usage
 
-After running the npm command in your directory you can call the JavaScript in any JS framework
+After running the npm command in your directory you can start building your website and add the functionality you need. 
 
-## index.html
+## Create your front end in any JavaScript framework - create index.html file
 
 ```html
 
@@ -40,6 +40,8 @@ After running the npm command in your directory you can call the JavaScript in a
 </html>
 
 ```
+
+## Create index.js file and place in same directory as index.html
 
 ```javascript
 
