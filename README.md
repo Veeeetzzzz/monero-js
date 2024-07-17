@@ -21,9 +21,11 @@ Install it locally with ```npm install /path/to/monero-rpc.```
 import MoneroWalletRPC from 'monero-rpc';
 
 // Create an instance of MoneroWalletRPC
+// Make sure this address and port matches the port and address you used to start up monero-wallet-rpc.exe
 const wallet = new MoneroWalletRPC('http://127.0.0.1:18082/json_rpc');
 
 // Set up the daemon connection
+//Don't change this address
 await wallet.setDaemon({
   address: "http://localhost:18081",
   trusted: true
