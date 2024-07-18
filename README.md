@@ -63,7 +63,7 @@ const wallet = new MoneroWalletRPC('http://127.0.0.1:18082/json_rpc');
 // Set up the daemon connection
 //Don't change this address
 await wallet.setDaemon({
-  address: "http://localhost:18081",
+  address: "127.0.0.1:18081",
   trusted: true
 });
 
