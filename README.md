@@ -1,12 +1,20 @@
 # Monero RPC
 
-A JavaScript library for interacting with the Monero RPC.
+A JavaScript library for interacting with the Monero RPC. 
 
-## Install from NMP
+You'll need to make sure:
 
-```
-npm install monero-rpc
-```
+- monerod is running
+- monero-rpc is running
+
+Start monerod.exe & wait for it to finish syncing.
+
+![image](https://github.com/user-attachments/assets/2840a9d9-efe4-43e4-a7d7-d63829c41df9)
+
+Start the RPC with this command - replace args with your configs and make sure it's bound to your front end.
+
+--wallet-file wallet --daemon-address="127.0.0.1:18081" --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18083 --prompt-for-password --confirm-external-bind --rpc-access-control-origins="http://localhost:1234" --disable-rpc-login
+
 ## Install locally
 
 Clone repository or download the package.
