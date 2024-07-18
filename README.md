@@ -83,4 +83,5 @@ const allBalances = await wallet.getBalance({
 console.log(allBalances);
 ```
 ## Contributing
-## Terms
+
+You can report issues or suggest feedback via the standard Github channels. Open an issue or suggestion and fill out the template.
