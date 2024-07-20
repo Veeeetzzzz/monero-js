@@ -218,4 +218,75 @@ class MoneroWalletRPC {
   }
 }
 
+  // get_accounts
+  async getAccounts(tag) {
+    return this.call('get_accounts', { tag });
+  }
+
+  // create_account
+  async createAccount(label) {
+    return this.call('create_account', { label });
+  }
+
+  // get_account_tags
+  async getAccountTags() {
+    return this.call('get_account_tags');
+  }
+
+  // get_height
+  async getHeight() {
+    return this.call('get_height');
+  }
+
+  // incoming_transfers
+  async incomingTransfers(transfer_type, account_index, subaddr_indices) {
+    return this.call('incoming_transfers', { transfer_type, account_index, subaddr_indices });
+  }
+
+  // query_key
+  async queryKey(key_type) {
+    return this.call('query_key', { key_type });
+  }
+
+  // make_integrated_address
+  async makeIntegratedAddress(standard_address, payment_id) {
+    return this.call('make_integrated_address', { standard_address, payment_id });
+  }
+
+  // split_integrated_address
+  async splitIntegratedAddress(integrated_address) {
+    return this.call('split_integrated_address', { integrated_address });
+  }
+
+  // stop_wallet
+  async stopWallet() {
+    return this.call('stop_wallet');
+  }
+
+  // rescan_blockchain
+  async rescanBlockchain() {
+    return this.call('rescan_blockchain');
+  }
+
+  // set_tx_notes
+  async setTxNotes(txids, notes) {
+    return this.call('set_tx_notes', { txids, notes });
+  }
+
+  // get_tx_notes
+  async getTxNotes(txids) {
+    return this.call('get_tx_notes', { txids });
+  }
+
+  // set_attribute
+  async setAttribute(key, value) {
+    return this.call('set_attribute', { key, value });
+  }
+
+  // get_attribute
+  async getAttribute(key) {
+    return this.call('get_attribute', { key });
+  }
+}
+
 export default MoneroWalletRPC;
