@@ -88,4 +88,134 @@ class MoneroWalletRPC {
   }
 }
 
+  // get_address
+  async getAddress(account_index, address_index) {
+    return this.call('get_address', { account_index, address_index });
+  }
+
+  // get_address_index
+  async getAddressIndex(address) {
+    return this.call('get_address_index', { address });
+  }
+
+  // create_address
+  async createAddress(account_index, label, count) {
+    return this.call('create_address', { account_index, label, count });
+  }
+
+  // label_address
+  async labelAddress(index, label) {
+    return this.call('label_address', { index, label });
+  }
+
+  // validate_address
+  async validateAddress(address, any_net_type, allow_openalias) {
+    return this.call('validate_address', { address, any_net_type, allow_openalias });
+  }
+
+  // transfer
+  async transfer(destinations, account_index, subaddr_indices, priority, ring_size, unlock_time, payment_id, get_tx_key, do_not_relay, get_tx_hex, get_tx_metadata) {
+    return this.call('transfer', { 
+      destinations, 
+      account_index, 
+      subaddr_indices, 
+      priority, 
+      ring_size, 
+      unlock_time, 
+      payment_id, 
+      get_tx_key, 
+      do_not_relay, 
+      get_tx_hex, 
+      get_tx_metadata 
+    });
+  }
+
+  // transfer_split
+  async transferSplit(destinations, account_index, subaddr_indices, priority, ring_size, unlock_time, payment_id, get_tx_keys, do_not_relay, get_tx_hex, get_tx_metadata) {
+    return this.call('transfer_split', { 
+      destinations, 
+      account_index, 
+      subaddr_indices, 
+      priority, 
+      ring_size, 
+      unlock_time, 
+      payment_id, 
+      get_tx_keys, 
+      do_not_relay, 
+      get_tx_hex, 
+      get_tx_metadata 
+    });
+  }
+
+  // sign_transfer
+  async signTransfer(unsigned_txset, export_raw) {
+    return this.call('sign_transfer', { unsigned_txset, export_raw });
+  }
+
+  // submit_transfer
+  async submitTransfer(tx_data_hex) {
+    return this.call('submit_transfer', { tx_data_hex });
+  }
+
+  // sweep_dust
+  async sweepDust(get_tx_keys, do_not_relay, get_tx_hex, get_tx_metadata) {
+    return this.call('sweep_dust', { get_tx_keys, do_not_relay, get_tx_hex, get_tx_metadata });
+  }
+
+  // sweep_all
+  async sweepAll(address, account_index, subaddr_indices, priority, ring_size, unlock_time, payment_id, get_tx_keys, below_amount, do_not_relay, get_tx_hex, get_tx_metadata) {
+    return this.call('sweep_all', { 
+      address, 
+      account_index, 
+      subaddr_indices, 
+      priority, 
+      ring_size, 
+      unlock_time, 
+      payment_id, 
+      get_tx_keys, 
+      below_amount, 
+      do_not_relay, 
+      get_tx_hex, 
+      get_tx_metadata 
+    });
+  }
+
+  // sweep_single
+  async sweepSingle(address, txid, account_index, priority, ring_size, unlock_time, payment_id, get_tx_key, do_not_relay, get_tx_hex, get_tx_metadata) {
+    return this.call('sweep_single', { 
+      address, 
+      txid, 
+      account_index, 
+      priority, 
+      ring_size, 
+      unlock_time, 
+      payment_id, 
+      get_tx_key, 
+      do_not_relay, 
+      get_tx_hex, 
+      get_tx_metadata 
+    });
+  }
+
+  // relay_tx
+  async relayTx(hex) {
+    return this.call('relay_tx', { hex });
+  }
+
+  // store
+  async store() {
+    return this.call('store');
+  }
+
+  // get_payments
+  async getPayments(payment_id) {
+    return this.call('get_payments', { payment_id });
+  }
+
+  // get_bulk_payments
+  async getBulkPayments(payment_ids, min_block_height) {
+    return this.call('get_bulk_payments', { payment_ids, min_block_height });
+  }
+}
+
 export default MoneroWalletRPC;
