@@ -1,15 +1,20 @@
-# Monero RPC
+# Monero-js - A JavaScript library for the Monero RPC.
 
-A JavaScript library for interacting with the Monero RPC. 
+A lightweight library to communicate with the Monero Wallet RPC. Minimal dependencies and focuses on security and scalability.
+
+Download the CLI binaries from the [official Monero Site](https://www.getmonero.org/downloads/#cli)
+
+Most anti-virus/anti-malware will flag the monerod and other binaries as a virus, because they have been spotted in the wild as "XMR miners" and subject to abuse. Add the folder you downloaded to your exclusions to avoid problems during development. There is no risk to you or your machine when running monerod.exe and mining does not run by default when it monerod.exe is run.
 
 You'll need to make sure:
 
 - monerod is running
-- monero-rpc is running
 
 Start monerod.exe & wait for it to finish syncing.
 
 ![image](https://github.com/user-attachments/assets/2840a9d9-efe4-43e4-a7d7-d63829c41df9)
+
+- monero-wallet-rpc is running
 
 Start the RPC with this command - replace args with your configs and make sure it's bound to your front end.
 
@@ -17,71 +22,76 @@ Start the RPC with this command - replace args with your configs and make sure i
 
 ## Install locally
 
-Clone repository or download the package.
+Clone repository/download the package.
 
-Install it locally with ```npm install /path/to/monero-rpc.```
+Install the npm package/library locally with ```npm install /path/to/monero-rpc.```
+
+Note: this is the same as using npm install {package name} but I do not intend to publish this to the npm registery at this stage.
 
 ## Usage
 
-After running the npm command in your directory you can start building your website and add the functionality you need. 
+You can use as many or as few of the methods needed but you always need to import the library, instalize a connection to a wallet and then add the methods you need.
 
-## Create your front end in any JavaScript framework - create index.html file
-
-```html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monero Wallet RPC Tester</title>
-</head>
-<body>
-    <h1>Monero Wallet RPC Tester</h1>
-    <button id="testMakeIntegratedAddress">Test Make Integrated Address</button>
-    <button id="testSetDaemon">Test Set Daemon</button>
-    <button id="testGetBalance">Test Get Balance</button>
-    <h2>Result:</h2>
-    <pre id="result"></pre>
-    <script type="module" src="./index.js"></script>
-</body>
-</html>
-
-```
-
-## Create index.js file and place in same directory as index.html
+Your front end should be wrapped around the JavaScript functionality so start with building the most complex bit first.
 
 ```javascript
-
-//Imports
+//Import the library
 import MoneroWalletRPC from 'monero-rpc';
 
-// Create an instance of MoneroWalletRPC
-// Make sure this address and port matches the port and address you used to start up monero-wallet-rpc.exe
-const wallet = new MoneroWalletRPC('http://127.0.0.1:18082/json_rpc');
+//Instalize connection to wallet
+const wallet = new MoneroWalletRPC('http://127.0.0.1:18083/json_rpc');
 
-// Set up the daemon connection
-//Don't change this address
-await wallet.setDaemon({
-  address: "127.0.0.1:18081",
-  trusted: true
-});
+// Helper function to handle errors
+function handleError(error) {
+    document.getElementById('result').textContent = `Error: ${error.message}`;
+}
 
-// Get balance for account index 0 and address indices 0 and 1
-const balance = await wallet.getBalance({
-  account_index: 0,
-  address_indices: [0, 1]
-});
+//If you need to set another Daemon
+async function testSetDaemon() {
+    try {
+        const result = await wallet.setDaemon({
+            address: '127.0.0.1:18081',
+            trusted: true
+        });
+        updateResult(result);
+    } catch (error) {
+        handleError(error);
+    }
+}
 
-console.log(balance);
+//Get balance
+async function testGetBalance() {
+    try {
+        const result = await wallet.getBalance({
+            account_index: 0,
+            all_accounts: true
+        });
+        updateResult(result);
+    } catch (error) {
+        handleError(error);
+    }
+}
 
-// Get balance for all accounts
-const allBalances = await wallet.getBalance({
-  all_accounts: true
-});
-
-console.log(allBalances);
+// Add event listeners for HTML file
+document.getElementById('testSetDaemon').addEventListener('click', testSetDaemon);
+document.getElementById('testGetBalance').addEventListener('click', testGetBalance);
+document.getElementById('testGetAddress').addEventListener('click', testGetAddress);
 ```
+
+You can now call the RPC with any JavaScript framework. To ensure all your functions are accessible, you can launch a front end for unit testing
+
+![image](https://github.com/user-attachments/assets/a4b72843-9f51-4a1e-a50e-77e983d9364e)
+
+I recommend using [Parcel](https://www.npmjs.com/package/parcel) for testing which is a very fast compared to the 30-40 seconds it takes to build in React/Next.js
+
+![image](https://github.com/user-attachments/assets/9799fea8-ce88-4ea0-b81f-37e27321663f)
+
+## Building your application 
+
+Use the index.html and index.js file as template. You want to reduce the amount of extra JavaScript needed, so pick the quickest way to deploy your application to keep the the dependencies low. 
+
+Even create-react-app is excessive for most applications so think about your technical stack.
+
 ## Contributing
 
 You can report issues or suggest feedback via the standard Github channels. Open an issue or suggestion and fill out the template.
