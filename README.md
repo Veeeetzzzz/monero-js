@@ -1,6 +1,6 @@
 # Monero-js - A JavaScript library for the Monero RPC.
 
-Built from scratch., Monero-JS is a lightweight library to communicate with the Monero Wallet RPC. Minimal dependencies and focuses on security and scalability.
+Built from scratch, Monero-JS is a lightweight library to communicate with the Monero Wallet RPC. Minimal dependencies and focuses on security and scalability.
 
 Download the CLI binaries from the [official Monero Site](https://www.getmonero.org/downloads/#cli)
 
