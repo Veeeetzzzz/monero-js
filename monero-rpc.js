@@ -289,4 +289,79 @@ class MoneroWalletRPC {
   }
 }
 
+  // get_tx_key
+  async getTxKey(txid) {
+    return this.call('get_tx_key', { txid });
+  }
+
+  // check_tx_key
+  async checkTxKey(txid, tx_key, address) {
+    return this.call('check_tx_key', { txid, tx_key, address });
+  }
+
+  // get_tx_proof
+  async getTxProof(txid, address, message) {
+    return this.call('get_tx_proof', { txid, address, message });
+  }
+
+  // check_tx_proof
+  async checkTxProof(txid, address, message, signature) {
+    return this.call('check_tx_proof', { txid, address, message, signature });
+  }
+
+  // get_spend_proof
+  async getSpendProof(txid, message) {
+    return this.call('get_spend_proof', { txid, message });
+  }
+
+  // check_spend_proof
+  async checkSpendProof(txid, message, signature) {
+    return this.call('check_spend_proof', { txid, message, signature });
+  }
+
+  // get_reserve_proof
+  async getReserveProof(all, account_index, amount, message) {
+    return this.call('get_reserve_proof', { all, account_index, amount, message });
+  }
+
+  // check_reserve_proof
+  async checkReserveProof(address, message, signature) {
+    return this.call('check_reserve_proof', { address, message, signature });
+  }
+
+  // get_transfers
+  async getTransfers(in_, out, pending, failed, pool, filter_by_height, min_height, max_height, account_index, subaddr_indices) {
+    return this.call('get_transfers', { 
+      in, out, pending, failed, pool, 
+      filter_by_height, min_height, max_height, 
+      account_index, subaddr_indices 
+    });
+  }
+
+  // get_transfer_by_txid
+  async getTransferByTxid(txid, account_index) {
+    return this.call('get_transfer_by_txid', { txid, account_index });
+  }
+
+  // describe_transfer
+  async describeTransfer(unsigned_txset, multisig_txset) {
+    return this.call('describe_transfer', { unsigned_txset, multisig_txset });
+  }
+
+  // sign
+  async sign(data) {
+    return this.call('sign', { data });
+  }
+
+  // verify
+  async verify(data, address, signature) {
+    return this.call('verify', { data, address, signature });
+  }
+
+  // export_outputs
+  async exportOutputs(all) {
+    return this.call('export_outputs', { all });
+  }
+}
+
 export default MoneroWalletRPC;
