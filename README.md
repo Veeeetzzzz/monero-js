@@ -78,7 +78,7 @@ document.getElementById('testGetBalance').addEventListener('click', testGetBalan
 document.getElementById('testGetAddress').addEventListener('click', testGetAddress);
 ```
 
-You can now call the RPC with any JavaScript framework. To ensure all your functions are accessible, you can launch a front end for unit testing
+You can now call the RPC with any JavaScript framework. To ensure all your functions are accessible, you can launch a front end for unit testing with the files in [/unit-tests-front-end](https://github.com/Veeeetzzzz/monero-js/tree/main/unit-tests-front-end)
 
 ![image](https://github.com/user-attachments/assets/a4b72843-9f51-4a1e-a50e-77e983d9364e)
 
