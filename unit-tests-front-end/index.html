@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monero Wallet RPC Tester</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pass {
+            background-color: #90EE90;
+        }
+        .fail {
+            background-color: #FFB6C1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monero Wallet RPC Tester</h1>
+    <table id="rpcTable">
+        <tr>
+            <th>RPC Name</th>
+            <th>Value (if needed)</th>
+            <th>Action</th>
+            <th>Pass/Fail</th>
+        </tr>
+        <tr>
+            <td>Make Integrated Address</td>
+            <td><input type="text" id="paymentId" placeholder="Payment ID"></td>
+            <td><button onclick="testRPC('makeIntegratedAddress', 'paymentId')">Test</button></td>
+            <td id="makeIntegratedAddress-result"></td>
+        </tr>
+        <tr>
+            <td>Set Daemon</td>
+            <td><input type="text" id="daemonAddress" placeholder="127.0.0.1:18081"></td>
+            <td><button onclick="testRPC('setDaemon', 'daemonAddress')">Test</button></td>
+            <td id="setDaemon-result"></td>
+        </tr>
+        <tr>
+            <td>Get Balance</td>
+            <td><input type="number" id="accountIndex" placeholder="Account Index"></td>
+            <td><button onclick="testRPC('getBalance', 'accountIndex')">Test</button></td>
+            <td id="getBalance-result"></td>
+        </tr>
+        <tr>
+            <td>Get Address</td>
+            <td><input type="number" id="addressAccountIndex" placeholder="Account Index"></td>
+            <td><button onclick="testRPC('getAddress', 'addressAccountIndex')">Test</button></td>
+            <td id="getAddress-result"></td>
+        </tr>
+        <tr>
+            <td>Create Address</td>
+            <td><input type="text" id="addressLabel" placeholder="Address Label"></td>
+            <td><button onclick="testRPC('createAddress', 'addressLabel')">Test</button></td>
+            <td id="createAddress-result"></td>
+        </tr>
+        <tr>
+            <td>Validate Address</td>
+            <td><input type="text" id="validateAddressInput" placeholder="Address to validate"></td>
+            <td><button onclick="testRPC('validateAddress', 'validateAddressInput')">Test</button></td>
+            <td id="validateAddress-result"></td>
+        </tr>
+        <tr>
+            <td>Transfer</td>
+            <td>
+                <input type="text" id="transferAddress" placeholder="Destination Address">
+                <input type="number" id="transferAmount" placeholder="Amount">
+            </td>
+            <td><button onclick="testRPC('transfer', ['transferAddress', 'transferAmount'])">Test</button></td>
+            <td id="transfer-result"></td>
+        </tr>
+        <tr>
+            <td>Sweep Dust</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('sweepDust')">Test</button></td>
+            <td id="sweepDust-result"></td>
+        </tr>
+        <tr>
+            <td>Get Accounts</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('getAccounts')">Test</button></td>
+            <td id="getAccounts-result"></td>
+        </tr>
+        <tr>
+            <td>Get Height</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('getHeight')">Test</button></td>
+            <td id="getHeight-result"></td>
+        </tr>
+        <tr>
+            <td>Stop Wallet</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('stopWallet')">Test</button></td>
+            <td id="stopWallet-result"></td>
+        </tr>
+        <tr>
+            <td>Rescan Blockchain</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('rescanBlockchain')">Test</button></td>
+            <td id="rescanBlockchain-result"></td>
+        </tr>
+        <tr>
+            <td>Get Tx Key</td>
+            <td><input type="text" id="txId" placeholder="Transaction ID"></td>
+            <td><button onclick="testRPC('getTxKey', 'txId')">Test</button></td>
+            <td id="getTxKey-result"></td>
+        </tr>
+        <tr>
+            <td>Get Transfers</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('getTransfers')">Test</button></td>
+            <td id="getTransfers-result"></td>
+        </tr>
+        <tr>
+            <td>Start Mining</td>
+            <td><input type="number" id="threads" placeholder="Number of threads"></td>
+            <td><button onclick="testRPC('startMining', 'threads')">Test</button></td>
+            <td id="startMining-result"></td>
+        </tr>
+        <tr>
+            <td>Stop Mining</td>
+            <td>N/A</td>
+            <td><button onclick="testRPC('stopMining')">Test</button></td>
+            <td id="stopMining-result"></td>
+        </tr>
+    </table>
+
+    <h2>Result:</h2>
+    <pre id="result"></pre>
+
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
