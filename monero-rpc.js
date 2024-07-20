@@ -364,4 +364,75 @@ class MoneroWalletRPC {
   }
 }
 
+  // import_outputs
+  async importOutputs(outputs_data_hex) {
+    return this.call('import_outputs', { outputs_data_hex });
+  }
+
+  // export_key_images
+  async exportKeyImages(all) {
+    return this.call('export_key_images', { all });
+  }
+
+  // import_key_images
+  async importKeyImages(signed_key_images) {
+    return this.call('import_key_images', { signed_key_images });
+  }
+
+  // make_uri
+  async makeUri(address, amount, payment_id, recipient_name, tx_description) {
+    return this.call('make_uri', { address, amount, payment_id, recipient_name, tx_description });
+  }
+
+  // parse_uri
+  async parseUri(uri) {
+    return this.call('parse_uri', { uri });
+  }
+
+  // get_address_book
+  async getAddressBook(entries) {
+    return this.call('get_address_book', { entries });
+  }
+
+  // add_address_book
+  async addAddressBook(address, payment_id, description) {
+    return this.call('add_address_book', { address, payment_id, description });
+  }
+
+  // delete_address_book
+  async deleteAddressBook(index) {
+    return this.call('delete_address_book', { index });
+  }
+
+  // refresh
+  async refresh(start_height) {
+    return this.call('refresh', { start_height });
+  }
+
+  // rescan_spent
+  async rescanSpent() {
+    return this.call('rescan_spent');
+  }
+
+  // start_mining
+  async startMining(threads_count, do_background_mining, ignore_battery) {
+    return this.call('start_mining', { threads_count, do_background_mining, ignore_battery });
+  }
+
+  // stop_mining
+  async stopMining() {
+    return this.call('stop_mining');
+  }
+
+  // get_languages
+  async getLanguages() {
+    return this.call('get_languages');
+  }
+
+  // create_wallet
+  async createWallet(filename, password, language) {
+    return this.call('create_wallet', { filename, password, language });
+  }
+}
+
 export default MoneroWalletRPC;
