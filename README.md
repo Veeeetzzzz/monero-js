@@ -32,7 +32,7 @@ Note: this is the same as using npm install {package name} but I do not intend t
 
 You can use as many or as few of the methods needed but you always need to import the library, instalize a connection to a wallet and then add the methods you need.
 
-Your front end should be wrapped around the JavaScript functionality so start with building the most complex bit first.
+Create index.js
 
 ```javascript
 //Import the library
@@ -78,7 +78,7 @@ document.getElementById('testGetBalance').addEventListener('click', testGetBalan
 document.getElementById('testGetAddress').addEventListener('click', testGetAddress);
 ```
 
-You can now call the RPC with any JavaScript framework. To ensure all your functions are accessible, you can launch a front end for unit testing with the files in [/unit-tests-front-end](https://github.com/Veeeetzzzz/monero-js/tree/main/unit-tests-front-end)
+To ensure all your functions are accessible, you can launch a front end for unit testing with the files in [/unit-tests-front-end](https://github.com/Veeeetzzzz/monero-js/tree/main/unit-tests-front-end)
 
 ![image](https://github.com/user-attachments/assets/a4b72843-9f51-4a1e-a50e-77e983d9364e)
 
