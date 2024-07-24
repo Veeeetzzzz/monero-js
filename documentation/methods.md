@@ -1,0 +1,22 @@
+# Monero RPC Library Documentation
+
+## Table of Contents
+- [Available Methods](#available-methods)
+  - [makeIntegratedAddress](#makeintegratedaddress)
+  - [setDaemon](#setdaemon)
+  - [getBalance](#getbalance)
+  - [getAddress](#getaddress)
+  - [createAddress](#createaddress)
+  - [validateAddress](#validateaddress)
+  - [transfer](#transfer)
+  - [sweepDust](#sweepdust)
+  - [getAccounts](#getaccounts)
+  - [getHeight](#getheight)
+  - [stopWallet](#stopwallet)
+  - [rescanBlockchain](#rescanblockchain)
+  - [getTxKey](#gettxkey)
+  - [getTransfers](#gettransfers)
+  - [startMining](#startmining)
+  - [stopMining](#stopmining)
+- [Error Handling](#error-handling)
+- [Notes](#notes)
